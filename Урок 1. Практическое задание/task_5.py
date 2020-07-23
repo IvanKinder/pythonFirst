@@ -1,20 +1,39 @@
-"""
-Задание 6.
-Задание на закрепление навыков работы со стеком
+class StackClass:
+    def __init__(self, n):
+        self.elements = [[]]
+        self.n = n
 
-Примечание: в этом задании вспомните ваши знания по работе с ООП
-и опирайтесь на пример урока
+    def is_empty(self):
+        return self.elements == [[]]
 
-Реализуйте структуру "стопка тарелок".
+    def push_in(self, el):
+        if len(self.elements[-1]) < self.n:
+            self.elements[-1].append(el)
+        else:
+            self.elements.append([el])
 
-Мы можем складывать тарелки в стопку и при превышении некоторого значения
-нужно начать складывать тарелки в новую стопку.
+    def pop_out(self):
+        return self.elements[-1].pop()
 
-Структура должна предусматривать наличие нескольких стеков.
-Создание нового стека происходит при достижении предыдущим стеком порогового значения.
-Реализуйте по аналогии с примером, рассмотренным на уроке, необходимые методы,
-для реализации это структуры, добавьте новые методы (не рассмотренные в примере с урока)
-для реализации этой задачи.
+    def get_val(self):
+        return self.elements[-1][len(self.elements[-1]) - 1]
 
-После реализации структуры, проверьте ее работу на различных сценариях
-"""
+    def stack_size(self):
+        return (len(self.elements) - 1) * len(self.elements[0]) + len(self.elements[-1])
+
+    def drop_last_stack(self):
+        return self.elements.pop()
+
+    def drop_full_stack(self):
+        self.elements = [[]]
+
+
+n = int(input('Введите пороговое значение для стопки тарелок: '))
+STACK_OBJ = StackClass(n)
+
+for i in range(10):
+    STACK_OBJ.push_in(1)
+
+print(STACK_OBJ.elements, '\n', STACK_OBJ.get_val(), '\n', STACK_OBJ.stack_size(), '\n', STACK_OBJ.is_empty())
+STACK_OBJ.drop_full_stack()
+print(STACK_OBJ.elements)

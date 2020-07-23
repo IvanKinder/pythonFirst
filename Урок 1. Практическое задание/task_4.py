@@ -30,7 +30,7 @@ def password_checker2(username):  # O(3) - 'эффективнее, потому
                     password_checker2(username)
                 else:
                     raise Exception('Неверный пароль!\n')
-            except Exception as e:  # pylint ругается, не понял, как исправить 
+            except Exception as e:  # pylint ругается, не понял, как исправить
                 print(e)
     except KeyError:
         print('Такого пользователя не существует!\n')
