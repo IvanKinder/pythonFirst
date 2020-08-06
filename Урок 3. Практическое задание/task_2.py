@@ -1,6 +1,6 @@
 import hashlib
 
-pass_hash_data = {}
+PASS_HASH_DATA = {}
 
 
 def login_program():
@@ -9,10 +9,10 @@ def login_program():
     if user_name.lower() == 'q':
         print('Вы вышли из программы!')
     else:
-        if user_name in pass_hash_data.keys():
+        if user_name in PASS_HASH_DATA.keys():
             user_pass = input('Пользователь существует! Введите пароль: ')
             full_pass = user_name + user_pass
-            if hashlib.sha256(bytes(full_pass, encoding='utf-8')).hexdigest() == pass_hash_data[user_name].hexdigest():
+            if hashlib.sha256(bytes(full_pass, encoding='utf-8')).hexdigest() == PASS_HASH_DATA[user_name].hexdigest():
                 print('Пароль введен правильно!\n')
                 login_program()
             else:
@@ -20,7 +20,7 @@ def login_program():
                 login_program()
         else:
             user_pass = input('Новый пользователь! Введите пароль: ')
-            pass_hash_data[user_name] = hashlib.sha256(bytes(user_name + user_pass, encoding='utf-8'))
+            PASS_HASH_DATA[user_name] = hashlib.sha256(bytes(user_name + user_pass, encoding='utf-8'))
             login_program()
 
 

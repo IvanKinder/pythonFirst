@@ -1,10 +1,18 @@
-"""
-Задание 4.
-Реализуйте скрипт "Кэширование веб-страниц"
+from hashlib import sha512
 
-Функция должна принимать url-адрес и проверять
-есть ли в кэше соответствующая страница, если нет, то вносит ее в кэш
+URL_CASH_LIST = []
 
-Подсказка: задачу решите обязательно с применением 'соленого' хеширования
-Можете условжнить задачу, реализовав ее через ООП
-"""
+
+def url_hashing(url):
+    url_hash = sha512(bytes(url * 7, 'utf-8')).hexdigest()
+    if url_hash not in URL_CASH_LIST:
+        URL_CASH_LIST.append(url_hash)
+        print(URL_CASH_LIST)
+        url_hashing(input('Введите URL: '))
+    else:
+        print('Такой адрес уже есть в кэше!')
+        print(URL_CASH_LIST)
+        url_hashing(input('Введите URL: '))
+
+
+url_hashing(input('Введите URL: '))

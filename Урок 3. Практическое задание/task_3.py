@@ -1,8 +1,8 @@
 from hashlib import sha256
 
-my_string = input('Введите строку!: ')
-my_list = []
-my_hash_set = set()
+MY_STRING = input('Введите строку!: ')
+MY_LIST = []
+MY_HASH_SET = set()
 
 
 def under_strings(my_string_of_letters, my_l, number_of_letters):
@@ -15,11 +15,11 @@ def under_strings(my_string_of_letters, my_l, number_of_letters):
 
 
 def make_hash():
-    for word in under_strings(my_string, my_list, 1):
-        my_hash_set.add(sha256(bytes(word, 'utf-8')).hexdigest())
-    print(my_hash_set)
-    print(set(my_list))
-    print(len(my_hash_set))
+    for word in under_strings(MY_STRING, MY_LIST, 1):
+        MY_HASH_SET.add(sha256(bytes(word, 'utf-8')).hexdigest())
+    print(MY_HASH_SET)
+    print(set(MY_LIST))
+    print(len(MY_HASH_SET))
 
 
 make_hash()
