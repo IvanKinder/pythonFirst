@@ -1,10 +1,9 @@
-"""
-Пробовал удалять нечетные элементы из имеющегося списка, но это не всегда было быстрее, а на больших списках медленнее
-Так тоже медленнее, но выглядит красивее
-Не смог придумать вариант быстрее, чем имеющийся
-"""
 import timeit
-numbers = [n for n in range(1000)]
+
+NUMBERS = [n for n in range(100000)]
+SETUP1 = 'from __main__ import func_1'
+SETUP2 = 'from __main__ import func_2'
+
 
 def func_1(nums):
     new_arr = []
@@ -13,10 +12,16 @@ def func_1(nums):
             new_arr.append(i)
     return new_arr
 
-def func_2(nums):
-    return [nums.index(n) for n in nums if n % 2 == 0]
 
-print(f'Первая функция: {func_1(numbers)}')
-print(f'Вторая функция: {func_2(numbers)}')
-print(timeit.timeit(f'func_1({numbers})', setup='from __main__ import func_1', number=1))
-print(timeit.timeit(f'func_2({numbers})', setup='from __main__ import func_2', number=1))
+def func_2(nums):  # заменил стандартный итератор на сахарок питона
+    new_arr = []
+    for n in nums:
+        if n % 2 == 0:
+            new_arr.append(n)
+    return new_arr
+
+
+print(f'Первая функция: {func_1(NUMBERS)}')
+print(f'Вторая функция: {func_2(NUMBERS)}')
+print(f"Среднее время первой функции: {timeit.timeit(f'func_1({NUMBERS})', setup=SETUP1, number=100) / 100}")
+print(f"Среднее время второй функции: {timeit.timeit(f'func_2({NUMBERS})', setup=SETUP2, number=100) / 100}")
