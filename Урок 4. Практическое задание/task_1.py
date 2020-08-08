@@ -13,7 +13,7 @@ def func_1(nums):
     return new_arr
 
 
-def func_2(nums):  # заменил стандартный итератор на сахарок питона
+def func_2(nums):  # заменил стандартный итератор на сахарок питона, а они обычно быстрее
     new_arr = []
     for n in nums:
         if n % 2 == 0:
