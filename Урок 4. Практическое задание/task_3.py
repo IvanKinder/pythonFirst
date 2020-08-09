@@ -1,8 +1,9 @@
-"""
-Сделайте профилировку каждого алгоритма через cProfile и через timeit
-Сделайте вывод, какая из трех реализаций эффективнее и почему
-"""
-NUMBER = 123456789
+import cProfile
+import timeit
+
+NUMBER = 123456789876543212345678987654321234567898765432198765432198765432165657474838392920101
+
+
 def revers(enter_num, revers_num=0):  # функция ничего не возвращает, исправил ниже
     if enter_num == 0:
         return
@@ -11,6 +12,7 @@ def revers(enter_num, revers_num=0):  # функция ничего не воз�
         revers_num = (revers_num + num / 10) * 10
         enter_num //= 10
         revers(enter_num, revers_num)
+
 
 def revers_1(enter_num, revers_num=0):
     if enter_num == 0:
@@ -35,7 +37,16 @@ def revers_3(enter_num):
     revers_num = enter_num[::-1]
     return revers_num
 
+
 print(revers(NUMBER))  # видно, что функция ничего не возвращает
 print(revers_1(NUMBER))
 print(revers_2(NUMBER))
 print(revers_3(NUMBER))
+cProfile.run(f'revers_1({NUMBER})')  # функция вызвалась 88 раз
+cProfile.run(f'revers_2({NUMBER})')  # ничего особенного cProfile не показал
+cProfile.run(f'revers_3({NUMBER})')  # ничего особенного cProfile не показал
+print(timeit.timeit(f'revers_1({NUMBER})', setup='from __main__ import revers_1', number=1))
+# не понял, почему рекурсия быстрее, чем цикл в данной задаче
+print(timeit.timeit(f'revers_2({NUMBER})', setup='from __main__ import revers_2', number=2))
+# последняя эффективнее всех, потому что ничего не считатала
+print(timeit.timeit(f'revers_3({NUMBER})', setup='from __main__ import revers_3', number=3))
