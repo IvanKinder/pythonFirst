@@ -28,4 +28,7 @@ for i in range(int(input('Введите количество предприят
     comp_name = input(f'Введите название {i + 1} предприятия: ')
     COMPANY[comp_name] = [float(input(f'Введите прибыль за {m + 1} квартал: ')) for m in range(4)]
     COMPANIES.append(COMPANY)
+
 print(COMPANIES)
+print(f'Средняя годовая прибыль всех предприятий: {sum([1, 2])}')
+print(sum([sum(max(i.values())) for i in COMPANIES]))
