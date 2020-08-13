@@ -12,7 +12,10 @@
 """
 from collections import defaultdict
 from collections import deque
+
 TRANS_DICT = {'a': 10, 'b': 11, 'c': 12, 'd': 13, 'e': 14, 'f': 15}
+
+
 class NUM16:
 
     def __init__(self, letters):
@@ -29,9 +32,8 @@ class NUM16:
             else:
                 converted[i] = self.trans_dict[self.n16[i].lower()]
         for key, value in converted.items():
-            con_nam += value*(16**key)
+            con_nam += value * (16 ** key)
         return con_nam
-
 
     def __add__(self, other):
         a = self.n2 + other.n2
@@ -40,6 +42,7 @@ class NUM16:
     def __mul__(self, other):
         pass
 
+
 def convert_to_16(a):
     converted = deque()
     converted2 = deque()
@@ -47,7 +50,8 @@ def convert_to_16(a):
         if a == value:
             return key
     if a < 10:
-        return a
+        return str(a)
+
     def recursion_convert(numb):
         if numb < 16:
             converted.appendleft(numb)
@@ -55,6 +59,7 @@ def convert_to_16(a):
         else:
             converted.appendleft(numb % 16)
             recursion_convert(numb // 16)
+
     if a > 15:
         recursion_convert(a)
     for nu2 in converted:
@@ -66,5 +71,10 @@ def convert_to_16(a):
                     converted2.append(key)
     return converted2
 
-my16num = NUM16([j for j in 'F45ED23C'])
-print(''.join(convert_to_16(my16num + my16num)).upper())
+
+n16_1 = NUM16([j for j in input('Введите первое шестнадцатиричное число: ')])
+n16_2 = NUM16([j for j in input('Введите второе шестнадцатиричное число: ')])
+print(n16_1.n2)
+print(n16_2.n2)
+print(n16_1.n2 + n16_2.n2)
+print(f"{''.join(n16_1.n16[::-1])} + {''.join(n16_2.n16[::-1])} = {''.join(convert_to_16(n16_1 + n16_2)).upper()}")
