@@ -26,8 +26,6 @@ try:
         return mass
 
 
-    # Так как вероятность получить уже отсортированный массив при случайной генерации мала, придумал другую оптимизацию
-
     def sort_optima(mass):
         for j in range(len(mass) - 1):
             for i in range(len(mass) - 1):
@@ -58,25 +56,26 @@ try:
         return mass
 
 
-    print(f'Исходный массив: {MY_MASS}')
+    if __name__ == '__main__':
+        print(f'Исходный массив: {MY_MASS}')
 
-    m1 = memory_usage()
-    print(puz_sort(MY_MASS))
-    m2 = memory_usage()
-    print(f"{T_STR} без доработок: {timeit(f'puz_sort({MY_MASS})', setup=f'{I_VAR} puz_sort', number=1)}")
-    print(f'{M_STR} без доработок: {m2[0] - m1[0]} MiB')
+        m1 = memory_usage()
+        print(puz_sort(MY_MASS))
+        m2 = memory_usage()
+        print(f"{T_STR} без доработок: {timeit(f'puz_sort({MY_MASS})', setup=f'{I_VAR} puz_sort', number=1)}")
+        print(f'{M_STR} без доработок: {m2[0] - m1[0]} MiB')
 
-    m1 = memory_usage()
-    print(sort_optima(MY_MASS))
-    m2 = memory_usage()
-    print(f"{T_STR} с доработкой: {timeit(f'sort_optima({MY_MASS})', setup=f'{I_VAR} sort_optima', number=1)}")
-    print(f'{M_STR} с доработкой: {m2[0] - m1[0]} MiB')
+        m1 = memory_usage()
+        print(sort_optima(MY_MASS))
+        m2 = memory_usage()
+        print(f"{T_STR} с доработкой: {timeit(f'sort_optima({MY_MASS})', setup=f'{I_VAR} sort_optima', number=1)}")
+        print(f'{M_STR} с доработкой: {m2[0] - m1[0]} MiB')
 
-    m1 = memory_usage()
-    print(sort_very_good(MY_MASS))
-    m2 = memory_usage()
-    print(f"Лучшее {T_STR}: {timeit(f'sort_very_good({MY_MASS})', setup=f'{I_VAR} sort_very_good', number=1)}")
-    print(f'{M_STR} в самом быстром варианте: {m2[0] - m1[0]} MiB')
+        m1 = memory_usage()
+        print(sort_very_good(MY_MASS))
+        m2 = memory_usage()
+        print(f"Лучшее {T_STR}: {timeit(f'sort_very_good({MY_MASS})', setup=f'{I_VAR} sort_very_good', number=1)}")
+        print(f'{M_STR} в самом быстром варианте: {m2[0] - m1[0]} MiB')
 
 except ValueError:
     print('Необходимо ввести натуральное число!!!!!\n')
