@@ -5,8 +5,12 @@
 from random import uniform
 from timeit import timeit
 
-MY_MASS = [uniform(0, 50) for i in range(int(input('Введите количество элементов: ')))]
+try:
+    MY_MASS = [uniform(0, 50) for i in range(int(input('Введите количество элементов: ')))]
+except ValueError:
+    print('Вводите натуральные числа!!!')
 J_TXT = 'Время сортировки '
+I_txt = 'from __main__ import '
 
 
 def merge_sort(mass):
@@ -57,10 +61,13 @@ def sort_very_good(mass):
     return mass
 
 
-print(f'Исходный массив: {MY_MASS}')
-print(f'Сортировка слиянием: {merge_sort(MY_MASS)}')
-print(f'Сортировка пузырьком: {sort_very_good(MY_MASS)}')
-print(
-    f"{J_TXT}слиянием: {timeit(f'merge_sort({MY_MASS})', setup='from __main__ import merge_sort', number=1)}")
-print(
-    f"{J_TXT}пузырьком: {timeit(f'sort_very_good({MY_MASS})', setup='from __main__ import sort_very_good', number=1)}")
+try:
+    print(f'Исходный массив: {MY_MASS}')
+    print(f'Сортировка слиянием: {merge_sort(MY_MASS)}')
+    print(f'Сортировка пузырьком: {sort_very_good(MY_MASS)}')
+    print(
+        f"{J_TXT}слиянием: {timeit(f'merge_sort({MY_MASS})', setup=f'{I_txt}merge_sort', number=1)}")
+    print(
+        f"{J_TXT}пузырьком: {timeit(f'sort_very_good({MY_MASS})', setup=f'{I_txt}sort_very_good', number=1)}")
+except NameError:
+    pass
