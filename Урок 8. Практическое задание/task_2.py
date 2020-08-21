@@ -5,7 +5,6 @@
 (например, валидация значений узлов в соответствии с требованиями для бинарного дерева)
 Поработайте с доработанной структурой, позапускайте на реальных данных.
 """
-
 class BinaryTree:
     def __init__(self, root_obj):
         # корень
@@ -62,14 +61,15 @@ class BinaryTree:
         return self.root
 
 
-r = BinaryTree(8)
-print(r.get_root_val())
-print(r.get_left_child())
-r.insert_left(4)
-print(r.get_left_child())
-print(r.get_left_child().get_root_val())
-r.insert_right(12)
-print(r.get_right_child())
-print(r.get_right_child().get_root_val())
-r.get_right_child().set_root_val(16)
-print(r.get_right_child().get_root_val())
+if __name__ == '__main__':
+    r = BinaryTree(8)
+    print(r.get_root_val())
+    print(r.get_left_child())
+    r.insert_left(4)
+    print(r.get_left_child())
+    print(r.get_left_child().get_root_val())
+    r.insert_right(12)
+    print(r.get_right_child())
+    print(r.get_right_child().get_root_val())
+    r.get_right_child().set_root_val(16)
+    print(r.get_right_child().get_root_val())

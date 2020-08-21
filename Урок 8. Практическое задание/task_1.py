@@ -1,7 +1,9 @@
 """
 Сырой вариант по коду из лекции
 """
-from collections import Counter, deque
+from collections import Counter, deque, defaultdict
+
+MY_STRING = "beep boop beer!"
 
 
 def binary_haf(count_list):
@@ -38,8 +40,6 @@ def code_haf(tree, path=''):
         code_haf(tree[0], path=f'{path}0')
         code_haf(tree[1], path=f'{path}1')
 
-
-MY_STRING = "beep boop beer!"
 
 code_haf(binary_haf(MY_STRING))
 
