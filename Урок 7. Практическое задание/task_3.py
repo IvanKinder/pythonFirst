@@ -32,12 +32,14 @@ def with_sort(mas):
 try:
     m = int(input('Введите натуральное число: '))
     MY_MASS = [uniform(0, 50) for i in range(m * 2 + 1)]
+    MY_MASS_1 = MY_MASS[:]
+    MY_MASS_2 = MY_MASS[:]
     print(MY_MASS)
     print(f'Медиана check: {median(MY_MASS)}')
     print(timeit(f'median({MY_MASS})', setup='from statistics import median', number=1))
-    print(f'Медиана без сортировки: {without_sort(MY_MASS)}')
-    print(timeit(f'without_sort({MY_MASS})', setup='from __main__ import without_sort', number=1))
-    print(f'С гномьей сортировкой: {with_sort(MY_MASS)}')
-    print(timeit(f'with_sort({MY_MASS})', setup='from __main__ import with_sort', number=1))
+    print(f'Медиана без сортировки: {without_sort(MY_MASS_1)}')
+    print(timeit(f'without_sort({MY_MASS_1})', setup='from __main__ import without_sort', number=1))
+    print(f'С гномьей сортировкой: {with_sort(MY_MASS_2)}')
+    print(timeit(f'with_sort({MY_MASS_2})', setup='from __main__ import with_sort', number=1))
 except ValueError:
     print('Число!!')

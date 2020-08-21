@@ -7,6 +7,7 @@ from timeit import timeit
 
 try:
     MY_MASS = [uniform(0, 50) for i in range(int(input('Введите количество элементов: ')))]
+    MY_MASS_1 = MY_MASS[:]
 except ValueError:
     print('Вводите натуральные числа!!!')
 J_TXT = 'Время сортировки '
@@ -64,10 +65,10 @@ def sort_very_good(mass):
 try:
     print(f'Исходный массив: {MY_MASS}')
     print(f'Сортировка слиянием: {merge_sort(MY_MASS)}')
-    print(f'Сортировка пузырьком: {sort_very_good(MY_MASS)}')
+    print(f'Сортировка пузырьком: {sort_very_good(MY_MASS_1)}')
     print(
         f"{J_TXT}слиянием: {timeit(f'merge_sort({MY_MASS})', setup=f'{I_txt}merge_sort', number=1)}")
     print(
-        f"{J_TXT}пузырьком: {timeit(f'sort_very_good({MY_MASS})', setup=f'{I_txt}sort_very_good', number=1)}")
+        f"{J_TXT}пузырьком: {timeit(f'sort_very_good({MY_MASS_1})', setup=f'{I_txt}sort_very_good', number=1)}")
 except NameError:
     pass

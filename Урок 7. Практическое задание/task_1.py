@@ -12,9 +12,13 @@ M_STR = 'Потрачено памяти'
 
 try:
     MY_MASS = [randint(-100, 100) for i in range(int(input('Введите количество элементов: ')))]
+    MY_MASS_1 = MY_MASS[:]
+    MY_MASS_2 = MY_MASS[:]
 
 
-    # MY_MASS = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    MY_MASS_01 = [10, 9, 8, 7, 6, 5, 4, 3, 2, 0]
+    MY_MASS_02 = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    MY_MASS_03 = [10, 9, 8, 7, 6, 5, 4, 3, 2, -1]
 
     def puz_sort(mass):
         for j in range(len(mass) - 1):
@@ -60,21 +64,21 @@ try:
         print(f'Исходный массив: {MY_MASS}')
 
         m1 = memory_usage()
-        print(puz_sort(MY_MASS))
+        print(puz_sort(MY_MASS_01))
         m2 = memory_usage()
-        print(f"{T_STR} без доработок: {timeit(f'puz_sort({MY_MASS})', setup=f'{I_VAR} puz_sort', number=1)}")
+        print(f"{T_STR} без доработок: {timeit(f'puz_sort({MY_MASS_01})', setup=f'{I_VAR} puz_sort', number=1)}")
         print(f'{M_STR} без доработок: {m2[0] - m1[0]} MiB')
 
         m1 = memory_usage()
-        print(sort_optima(MY_MASS))
+        print(sort_optima(MY_MASS_02))
         m2 = memory_usage()
-        print(f"{T_STR} с доработкой: {timeit(f'sort_optima({MY_MASS})', setup=f'{I_VAR} sort_optima', number=1)}")
+        print(f"{T_STR} с доработкой: {timeit(f'sort_optima({MY_MASS_02})', setup=f'{I_VAR} sort_optima', number=1)}")
         print(f'{M_STR} с доработкой: {m2[0] - m1[0]} MiB')
 
         m1 = memory_usage()
-        print(sort_very_good(MY_MASS))
+        print(sort_very_good(MY_MASS_03))
         m2 = memory_usage()
-        print(f"Лучшее {T_STR}: {timeit(f'sort_very_good({MY_MASS})', setup=f'{I_VAR} sort_very_good', number=1)}")
+        print(f"Лучшее {T_STR}: {timeit(f'sort_very_good({MY_MASS_03})', setup=f'{I_VAR} sort_very_good', number=1)}")
         print(f'{M_STR} в самом быстром варианте: {m2[0] - m1[0]} MiB')
 
 except ValueError:
